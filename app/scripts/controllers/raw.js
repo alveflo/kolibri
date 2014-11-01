@@ -17,13 +17,21 @@ var sendBtnClick = function() {
  * Controller of the kolibriApp
  */
 angular.module('kolibriApp')
-  .controller('RawCtrl', function ($scope) {
+  .controller('RawCtrl', ['DataService', '$scope', function (DataService, $scope) {
     $scope.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',
       'Karma'
     ];
-    $scope.sendBtnClick = function() {
-    	sendBtnClick();
+
+    $scope.init = function() {
+      $scope.data = DataService.getData();
+
+      $scope.sendBtnClick = function() {
+      	sendBtnClick();
+      }
+      $scope.$apply();
     }
-  });
+
+    $scope.init();
+  }]);
