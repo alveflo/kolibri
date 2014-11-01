@@ -33,9 +33,7 @@
           </div>
           <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-              <li class="active"><a href="#">Main</a></li>
-              <li><a href="#about">Raw</a></li>
-              <li><a href="#contact">Graph</a></li>
+              <li class="active"><a ng-href="#">Settings</a></li>
             </ul>
           </div><!--/.nav-collapse -->
         </div>
@@ -44,12 +42,6 @@
       <!-- Content -->
       <div class="container">
         <div ng-view=""></div>      
-      </div>
-
-      <div class="footer">
-        <div class="container">
-          <p class="text-muted">Place sticky footer content here.</p>
-        </div>
       </div>
 
       <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
@@ -61,6 +53,7 @@
 
        ga('create', 'UA-XXXXX-X');
        ga('send', 'pageview');
+
      </script>
 
      <!-- build:js(.) scripts/oldieshim.js -->
@@ -96,9 +89,15 @@
     <!-- endbuild -->
 
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/socketHandler.js"></script>
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/about.js"></script>
+    <script src="scripts/controllers/raw.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+          $("body").tooltip({ selector: '[data-toggle=tooltip]' });
+      });
+    </script>
     <!-- endbuild -->
   </body>
   </html>

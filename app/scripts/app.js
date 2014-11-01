@@ -8,24 +8,46 @@
  *
  * Main module of the application.
  */
-angular
-  .module('kolibriApp', [
+var module = angular.module('kolibriApp', [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+  ]);
+
+module.service('DataService', function() {
+    var _dataContainer = [{
+      data: 'test1'
+    },{
+      data: 'test2'
+    }];
+
+    var _getData = function() {
+      return this.dataContainer;
+    }
+
+    var _addData = function(msg) {
+      var time = new Date();
+      var timestr = "[" + time.getHours() + ":" + time.getMinutes + ":" + time.getSeconds() + "]";
+      var obj = { timestamp: time, data: msg };
+      this.dataContainer.push(obj);
+    }
+
+    return {
+      dataContainer: _dataContainer,
+      getData: _getData,
+      addData: _addData
+    }
+
+  });
+
+module.config(function ($routeProvider) {
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
       })
       .otherwise({
         redirectTo: '/'
